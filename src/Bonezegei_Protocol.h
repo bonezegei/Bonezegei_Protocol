@@ -10,9 +10,9 @@
 #define BZP_DATA_SIZE 256
 #define BZP_INDEX_SIZE 20
 
-#define BZP_DATA_START '\1'  //Data Start
-#define BZP_DATA_END '\2'    //Data End
-#define BZP_SEPARATOR "\3\0"   //Separator
+#define BZP_DATA_START '\1'   //Data Start
+#define BZP_DATA_END '\2'     //Data End
+#define BZP_SEPARATOR "\3\0"  //Separator
 #include <Arduino.h>
 
 typedef struct {
@@ -25,16 +25,18 @@ class Bonezegei_Protocol {
 public:
   Bonezegei_Protocol();
   char *getData(uint8_t index);                      //get data by index
-  char *getData(char *name);                         //get data by name
-  uint8_t getIndex(char *name);                      //get index by name
+  char *getData(const char *name);                   //get data by name
+  uint8_t getIndex(const char *name);                //get index by name
   char *getName(uint8_t index);                      //get name by index
   void addIndex(BZP_INDEX _index);                   //add Index by BZP_INDEX struct
   void addIndex(const char *name);                   //add Index by name
   void addIndex(const char *name[], uint8_t _size);  //add Index by name
 
   BZP_INDEX index[BZP_INDEX_SIZE];
+  char *inner_saveptr = NULL;
   uint8_t index_size;
   char data[BZP_DATA_SIZE];
+  char data_backup[BZP_DATA_SIZE];
 };
 
 
