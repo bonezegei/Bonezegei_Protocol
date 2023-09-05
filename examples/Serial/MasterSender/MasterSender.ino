@@ -20,6 +20,6 @@ void loop() {
   bzp.addData(8.5467);
   bzp.endData();
   Serial.printf("%s",bzp.rawData());
-  delay(30);
+  delay(100); // Safe delay for Serial lower than this could result to data mismatched
 }
 
